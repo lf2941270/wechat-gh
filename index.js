@@ -12,15 +12,15 @@ var config = {
 app.set('port', (process.env.PORT || 5000));
 app.use(express.query());
 app.use('/', wechat(config).text(function (message, req, res, next) {
-    request('http://sandbox.api.simsimi.com/request.p?key=8de56a1d-5367-41bc-a36a-4be3d46b5742&lc=zh&ft=1.0&text=' + encodeURIComponent(message.Content), function (err, response, data) {
-        if(err || !JSON.parse(data).response){
+    request('http://api.qingyunke.com/api.php?key=free&appid=0&msg=' + encodeURIComponent(message.Content), function (err, response, data) {
+        if(err || !JSON.parse(data).content){
             return res.reply({
                 content: '机器人已经不堪重负挂掉了呢,请稍后再来调戏吧- -!',
                 type: 'text'
             });
         }
         res.reply({
-            content: JSON.parse(data).response,
+            content: JSON.parse(data).content,
             type: 'text'
         });
     })
