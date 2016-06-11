@@ -9,8 +9,8 @@ var config = {
     appid: 'wx104c9afe0e7b2afd',
     encodingAESKey: 'EKV54jq8DA8eE6FVgGPPgkDpOchGxZ0A4iP1RYlH8KI'
 };
-
-module.exports = wechat(config).text(function (message, req, res, next) {
+app.use(express.query());
+app.use('/', wechat(config).text(function (message, req, res, next) {
     request('http://sandbox.api.simsimi.com/request.p?key=8de56a1d-5367-41bc-a36a-4be3d46b5742&lc=zh&ft=1.0&text=' + encodeURIComponent(message.Content), function (err, response, data) {
         if(err || !JSON.parse(data).response){
             res.reply({
@@ -65,4 +65,4 @@ module.exports = wechat(config).text(function (message, req, res, next) {
         content: '暂时还不支持该类型的消息哦~',
         type: 'text'
     });
-}).middlewarify();
+}).middlewarify());
