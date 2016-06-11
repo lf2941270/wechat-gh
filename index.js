@@ -20,7 +20,7 @@ app.use('/', wechat(config).text(function (message, req, res, next) {
             });
         }
         res.reply({
-            content: JSON.parse(data).content,
+            content: JSON.parse(data).content.replace(/菲菲/g, '李饭饭'),
             type: 'text'
         });
     })
