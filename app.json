@@ -1,0 +1,21 @@
+{
+  "name": "wechat-gh",
+  "scripts": {
+    "postdeploy": "index.js"
+  },
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
