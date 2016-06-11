@@ -1,0 +1,24 @@
+{
+  "name": "wechat-gh",
+  "version": "1.0.0",
+  "description": "李饭饭的微信公众号",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lf2941270/wechat-gh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lf2941270/wechat-gh/issues"
+  },
+  "homepage": "https://github.com/lf2941270/wechat-gh#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "request": "^2.72.0",
+    "wechat": "^2.0.3"
+  }
+}
