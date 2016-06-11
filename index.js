@@ -9,6 +9,7 @@ var config = {
     appid: 'wx104c9afe0e7b2afd',
     encodingAESKey: 'EKV54jq8DA8eE6FVgGPPgkDpOchGxZ0A4iP1RYlH8KI'
 };
+app.set('port', (process.env.PORT || 5000));
 app.use(express.query());
 app.use('/', wechat(config).text(function (message, req, res, next) {
     request('http://sandbox.api.simsimi.com/request.p?key=8de56a1d-5367-41bc-a36a-4be3d46b5742&lc=zh&ft=1.0&text=' + encodeURIComponent(message.Content), function (err, response, data) {
@@ -66,3 +67,6 @@ app.use('/', wechat(config).text(function (message, req, res, next) {
         type: 'text'
     });
 }).middlewarify());
+app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+})

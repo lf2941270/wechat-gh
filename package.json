@@ -4,6 +4,7 @@
   "description": "李饭饭的微信公众号",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
