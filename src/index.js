@@ -9,9 +9,15 @@ var config = {
     appid: 'wx104c9afe0e7b2afd',
     encodingAESKey: 'EKV54jq8DA8eE6FVgGPPgkDpOchGxZ0A4iP1RYlH8KI'
 };
+var speech = require('./api/speech')
 app.set('port', (process.env.PORT || 5000));
 app.use(express.query());
-app.use('/', wechat(config).text(function (message, req, res, next) {
+app.use('/', wechat(config).text(async function (message, req, res, next) {
+    await res = speech.toVoice(message.Content)
+    res.reply({
+        content: res.data,
+        type: 'music'
+    })
     request('http://api.qingyunke.com/api.php?key=free&appid=0&msg=' + encodeURIComponent(message.Content), function (err, response, data) {
         if(err || !JSON.parse(data).content){
             return res.reply({
