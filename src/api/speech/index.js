@@ -2,7 +2,7 @@ import fs from 'fs'
 import axios from 'axios'
 class Speech {
 	constructor() {
-
+		this.getToken()
 	}
 	async getToken() {
 		const res = await axios({
