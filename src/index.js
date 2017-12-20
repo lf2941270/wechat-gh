@@ -13,25 +13,25 @@ var speech = require('./api/speech')
 app.set('port', (process.env.PORT || 5000));
 app.use(express.query());
 app.use('/', wechat(config).text(async function (message, req, res, next) {
-    await res = speech.toVoice(message.Content)
+    let data = await speech.toVoice(message.Content)
     res.reply({
-        content: res.data,
+        content: data,
         type: 'music'
     })
-    request('http://api.qingyunke.com/api.php?key=free&appid=0&msg=' + encodeURIComponent(message.Content), function (err, response, data) {
-        if(err || !JSON.parse(data).content){
-            return res.reply({
-                content: '机器人已经不堪重负挂掉了呢,请稍后再来调戏吧- -!',
-                type: 'text'
-            });
-        }
-        res.reply({
-            content: JSON.parse(data).content
-                .replace(/菲菲/g, '李饭饭')
-                .replace(/\{br\}/g, '\n'),
-            type: 'text'
-        });
-    })
+    //request('http://api.qingyunke.com/api.php?key=free&appid=0&msg=' + encodeURIComponent(message.Content), function (err, response, data) {
+    //    if(err || !JSON.parse(data).content){
+    //        return res.reply({
+    //            content: '机器人已经不堪重负挂掉了呢,请稍后再来调戏吧- -!',
+    //            type: 'text'
+    //        });
+    //    }
+    //    res.reply({
+    //        content: JSON.parse(data).content
+    //            .replace(/菲菲/g, '李饭饭')
+    //            .replace(/\{br\}/g, '\n'),
+    //        type: 'text'
+    //    });
+    //})
 }).image(function (message, req, res, next) {
     res.reply({
         content: '收到了一张图片: ' + util.inspect(message),
