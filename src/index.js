@@ -9,7 +9,7 @@ var config = {
     appid: 'wx104c9afe0e7b2afd',
     encodingAESKey: 'EKV54jq8DA8eE6FVgGPPgkDpOchGxZ0A4iP1RYlH8KI'
 };
-var speech = require('./api/speech')
+import speech from './api/speech'
 app.set('port', (process.env.PORT || 5000));
 app.use(express.query());
 app.use('/', wechat(config).text(async function (message, req, res, next) {
