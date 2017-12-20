@@ -16,7 +16,7 @@ app.use('/', wechat(config).text(async function (message, req, res, next) {
     let data = await speech.toVoice(message.Content)
     res.reply({
         content: data,
-        type: 'music'
+        type: 'voice'
     })
     //request('http://api.qingyunke.com/api.php?key=free&appid=0&msg=' + encodeURIComponent(message.Content), function (err, response, data) {
     //    if(err || !JSON.parse(data).content){
