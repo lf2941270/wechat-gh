@@ -10,6 +10,7 @@ var config = {
     encodingAESKey: 'EKV54jq8DA8eE6FVgGPPgkDpOchGxZ0A4iP1RYlH8KI'
 };
 import speech from './api/speech'
+import wx from './api/wx'
 app.set('port', (process.env.PORT || 5000));
 app.use(express.query());
 app.use('/', wechat(config).text(async function (message, req, res, next) {
