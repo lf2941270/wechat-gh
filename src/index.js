@@ -1,6 +1,6 @@
 //wechat middleware
 require("babel-core/register");
-require("babel-polyfill");
+//require("babel-polyfill");
 
 var express = require('express');
 var app = express();
@@ -14,6 +14,10 @@ var config = {
 };
 import speech from './api/speech'
 import pic from './api/pic'
+import wx from './api/wx'
+//pic.upload('http://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/crop%3D0%2C0%2C599%2C400%3Bc0%3Dbaike80%2C5%2C5%2C80%2C26/sign=25db9bfaff36afc31a4365258e29c7f4/dbb44aed2e738bd49588640ba98b87d6277ff95b.jpg')
+//    .then(url => pic.addAvatar(url))
+//    .then(url => console.log(url))
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.query());
@@ -49,7 +53,7 @@ app.use('/', wechat(config).text(async function (message, req, res, next) {
 
     pic.upload(picUrl)
         .then(url => pic.addAvatar(url))
-        .then(url => pic.upload(url))
+        //.then(url => pic.upload(url))
         .then(url => {
             res.reply({
                 content: '圣诞头像: ' + url,

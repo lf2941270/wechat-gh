@@ -64,21 +64,6 @@ class Pic {
 		var formUploader = new qiniu.form_up.FormUploader(config);
 		var putExtra = new qiniu.form_up.PutExtra();
 
-////bytes
-//		formUploader.put(uploadToken, null, "hello", null, function(respErr,
-//		                                                            respBody, respInfo) {
-//			if (respErr) {
-//				throw respErr;
-//			}
-//
-//			if (respInfo.statusCode == 200) {
-//				console.log(respBody);
-//			} else {
-//				console.log(respInfo.statusCode);
-//				console.log(respBody);
-//			}
-//		});
-
 //file
 		const filePath = await this.saveFile(url)
 		return new Promise(resolve => {
@@ -90,6 +75,8 @@ class Pic {
 
 				if (respInfo.statusCode == 200) {
 					console.log(respBody);
+					var fs = require('fs')
+					fs.unlink(filePath)
 					resolve(`http://ofp6fnkhe.bkt.clouddn.com/${respBody.key}`)
 
 				} else {
