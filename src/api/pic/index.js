@@ -89,8 +89,8 @@ class Pic {
 	}
 
 	async addAvatar(url) {
-		const params = '?imageMogr2/auto-orient/thumbnail/300000@/blur/1x0/quality/75|watermark/1/image/aHR0cDovLzd4aWQzbC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9oYXQucG5n/dissolve/100/gravity/North/dx/-20/dy/-30|imageslim'
-		return url + params
+		const params = 'imageMogr2/auto-orient/thumbnail/300000@/blur/1x0/quality/75|watermark/1/image/aHR0cDovLzd4aWQzbC5jb20xLnowLmdsYi5jbG91ZGRuLmNvbS9oYXQucG5n/dissolve/100/gravity/North/dx/-20/dy/-30|imageslim'
+		return url + '?' +encodeURIComponent(params)
 	}
 }
 
