@@ -1,4 +1,7 @@
 //wechat middleware
+require("babel-core/register");
+require("babel-polyfill");
+
 var express = require('express');
 var app = express();
 var util = require('util')
