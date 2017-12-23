@@ -49,6 +49,7 @@ app.use('/', wechat(config).text(async function (message, req, res, next) {
 
     pic.upload(picUrl)
         .then(url => pic.addAvatar(url))
+        .then(url => pic.upload(url))
         .then(url => {
             res.reply({
                 content: '圣诞头像: ' + url,
