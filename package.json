@@ -6,7 +6,9 @@
   "scripts": {
     "start": "npm run build && node lib/index.js",
     "build": "babel src --out-dir lib",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node --presets=latest",
+    "dev": "babel-node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -20,18 +22,20 @@
   "homepage": "https://github.com/lf2941270/wechat-gh#readme",
   "dependencies": {
     "axios": "^0.17.1",
-    "express": "^4.13.4",
-    "node-wav": "0.0.2",
-    "request": "^2.72.0",
-    "wav": "^1.0.1",
-    "wechat": "^2.0.3",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-es2015-destructuring": "^6.23.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-es2015-parameters": "^6.24.1",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
-    "babel-plugin-transform-strict-mode": "^6.24.1"
+    "babel-plugin-transform-strict-mode": "^6.24.1",
+    "express": "^4.13.4",
+    "fabric": "^2.0.0-rc.3",
+    "node-wav": "0.0.2",
+    "qiniu": "^7.1.1",
+    "request": "^2.72.0",
+    "wav": "^1.0.1",
+    "wechat": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -41,5 +45,10 @@
     "babel-plugin-transform-es2015-parameters": "^6.24.1",
     "babel-plugin-transform-es2015-spread": "^6.22.0",
     "babel-plugin-transform-strict-mode": "^6.24.1"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
   }
 }

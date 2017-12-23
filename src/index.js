@@ -10,34 +10,49 @@ var config = {
     encodingAESKey: 'EKV54jq8DA8eE6FVgGPPgkDpOchGxZ0A4iP1RYlH8KI'
 };
 import speech from './api/speech'
-import wx from './api/wx'
+import pic from './api/pic'
+
 app.set('port', (process.env.PORT || 5000));
 app.use(express.query());
 app.use('/', wechat(config).text(async function (message, req, res, next) {
-    let data = await speech.toVoice(message.Content)
-    res.reply({
-        content: data,
-        type: 'voice'
-    })
-    //request('http://api.qingyunke.com/api.php?key=free&appid=0&msg=' + encodeURIComponent(message.Content), function (err, response, data) {
-    //    if(err || !JSON.parse(data).content){
-    //        return res.reply({
-    //            content: '机器人已经不堪重负挂掉了呢,请稍后再来调戏吧- -!',
-    //            type: 'text'
-    //        });
-    //    }
-    //    res.reply({
-    //        content: JSON.parse(data).content
-    //            .replace(/菲菲/g, '李饭饭')
-    //            .replace(/\{br\}/g, '\n'),
-    //        type: 'text'
-    //    });
+    //let data = await speech.toVoice(message.Content)
+    //res.reply({
+    //    content: data,
+    //    type: 'voice'
     //})
+    //const uid = req.weixin.FromUserName
+    //
+    //console.log(1234)
+    //wx.getAvatar(uid)
+
+    request('http://api.qingyunke.com/api.php?key=free&appid=0&msg=' + encodeURIComponent(message.Content), function (err, response, data) {
+
+        if(err || !JSON.parse(data).content){
+            return res.reply({
+                content: '机器人已经不堪重负挂掉了呢,请稍后再来调戏吧- -!',
+                type: 'text'
+            });
+        }
+        res.reply({
+            content: JSON.parse(data).content
+                .replace(/菲菲/g, '李饭饭')
+                .replace(/\{br\}/g, '\n'),
+            type: 'text'
+        });
+    })
 }).image(function (message, req, res, next) {
-    res.reply({
-        content: '收到了一张图片: ' + util.inspect(message),
-        type: 'text'
-    });
+    const picUrl = message.PicUrl
+    console.log(picUrl)
+
+    pic.upload(picUrl)
+        .then(url => pic.addAvatar(url))
+        .then(url => {
+            res.reply({
+                content: '圣诞头像: ' + url,
+                type: 'text'
+            });
+        })
+
 }).voice(function (message, req, res, next) {
     res.reply({
         content: util.inspect(message),
